@@ -1,11 +1,11 @@
 import streamlit as st
 import speech_recognition as sr
 from gtts import gTTS
-from deep_translator import GoogleTranslator
 from io import BytesIO
 import tempfile
+from deep_translator import GoogleTranslator
 
-# Language name to ISO code mapping
+# Language mapping
 LANGUAGE_CODES = {
     "Hindi": "hi", "Tamil": "ta", "Telugu": "te", "Malayalam": "ml",
     "Kannada": "kn", "Bengali": "bn", "Gujarati": "gu", "Marathi": "mr",
@@ -26,7 +26,7 @@ def speech_to_text(audio_file):
 
 # Translate text
 def translate_text(text, target_lang):
-    return GoogleTranslator(source='en', target=target_lang).translate(text)
+    return GoogleTranslator(source='auto', target=target_lang).translate(text)
 
 # Convert text to speech
 def text_to_speech(text, lang_code):
@@ -36,7 +36,7 @@ def text_to_speech(text, lang_code):
     fp.seek(0)
     return fp
 
-# Streamlit app
+# Main app
 def main():
     st.title("🎙️ Voice Translator for Indian Languages")
 
